@@ -8,7 +8,7 @@ const Navbar = () => {
 
 	return (
 		<div className="flex justify-between items-center text-sm py-4 mb-5 border-b border-b-gray-400">
-			<p className="text-2xl font-bold cursor-pointer">CureConnect</p>
+			<p onClick={() => navigate("/")} className="text-2xl font-bold cursor-pointer">CureConnect</p>
 			<ul className="hidden md:flex gap-5 items-center font-medium">
 				<NavLink to="/">
 					<li className="py-1">Home</li>
