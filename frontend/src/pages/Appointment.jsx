@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
 import { assets } from "../assets/assets";
+import RelatedDoctors from "../components/RelatedDoctors";
 
 const Appointment = () => {
 	const { id } = useParams();
@@ -139,7 +140,7 @@ const Appointment = () => {
 					<div className="flex gap-3 items-center w-full overflow-x-scroll mt-4">
 						{docSlots.length &&
 							docSlots[slotIndex].map((slot, index) => (
-								<p
+								<p key={index}
 									onClick={() => setSlotTime(slot.time)}
 									className={`text-sm font-light flexshrink-0 px-5 py-2 rounded-full cursor-pointer ${
 										slot.time === slotTime
@@ -155,6 +156,7 @@ const Appointment = () => {
 						Book Appointment
 					</button>
 				</div>
+				<RelatedDoctors id={id} speciality={docInfo.speciality} />
 			</div>
 		)
 	);
