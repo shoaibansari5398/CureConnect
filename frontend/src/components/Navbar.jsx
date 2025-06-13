@@ -40,7 +40,7 @@ const Navbar = () => {
 					<li className="py-1">Contact</li>
 					<hr className="border-none outline-none h-0.5 bg-primary w-3/5 m-auto hidden" />
 				</NavLink>
-				<NavLink to="/admin">
+				<NavLink to="http://localhost:5174/">
 					<li className="border px-2.5 py-0.5 rounded-full border-gray-500 text-gray-600 text-xs font-bold">
 						Admin
 					</li>
@@ -103,13 +103,25 @@ const Navbar = () => {
 				>
 					<div className="flex items-center justify-between px-5 py-6">
 						<p className="w-36">CureConnect</p>
-						<img className="w-7 cursor-pointer" src={assets.cross_icon} alt="" />
+						<img
+							className="w-7 cursor-pointer"
+							src={assets.cross_icon}
+							alt=""
+						/>
 					</div>
 					<ul className="flex flex-col gap-2 items-center mt-5 px-5 text-lg font-medium">
-						<NavLink onClick={() => setShowMenu(false)} to="/">HOME</NavLink>
-						<NavLink onClick={() => setShowMenu(false)} to="/doctors">ALL DOCTORS</NavLink>
-						<NavLink onClick={() => setShowMenu(false)} to="/about">ABOUT</NavLink>
-						<NavLink onClick={() => setShowMenu(false)} to="/contact">CONTACT</NavLink>
+						<NavLink onClick={() => setShowMenu(false)} to="/">
+							HOME
+						</NavLink>
+						<NavLink onClick={() => setShowMenu(false)} to="/doctors">
+							ALL DOCTORS
+						</NavLink>
+						<NavLink onClick={() => setShowMenu(false)} to="/about">
+							ABOUT
+						</NavLink>
+						<NavLink onClick={() => setShowMenu(false)} to="/contact">
+							CONTACT
+						</NavLink>
 					</ul>
 				</div>
 			</div>
