@@ -1,14 +1,28 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { assets } from "../assets/assets";
+import { useContext } from "react";
+import { AppContext } from "../context/AppContext";
 const Navbar = () => {
 	const navigate = useNavigate();
 	const [showMenu, setShowMenu] = useState(false);
-	const [token, setToken] = useState(true);
+
+	const { token, setToken,userData } = useContext(AppContext);
+
+	const logoutHandler = () => {
+		setToken(false);
+		localStorage.removeItem("token");
+		// navigate("/");
+	};
 
 	return (
 		<div className="flex justify-between items-center text-sm py-4 mb-5 border-b border-b-gray-400">
-			<p onClick={() => navigate("/")} className="text-2xl font-bold cursor-pointer">CureConnect</p>
+			<p
+				onClick={() => navigate("/")}
+				className="text-2xl font-bold cursor-pointer"
+			>
+				CureConnect
+			</p>
 			<ul className="hidden md:flex gap-5 items-center font-medium">
 				<NavLink to="/">
 					<li className="py-1">Home</li>
@@ -28,11 +42,11 @@ const Navbar = () => {
 				</NavLink>
 			</ul>
 			<div className="flex items-center gap-4">
-				{token ? (
+				{token && userData ? (
 					<div className="flex items-center gap-2 cursor-pointer group relative">
 						<img
 							className="w-8 rounded-full"
-							src={assets.profile_pic}
+							src={userData.image}
 							alt="profile-pic"
 						></img>
 						<img
@@ -42,9 +56,24 @@ const Navbar = () => {
 						></img>
 						<div className="absolute top-0 right-0 pt-14 text-base font-medium text-gray-500 z-2 hidden group-hover:block">
 							<div className="min-w-48 bg-stone-100 rounded flex flex-col gap-4 p-4">
-								<p onClick={() => navigate("/my-appointments")} className="cursor-pointer hover:text-black">My Appointments</p>
-								<p onClick={() => navigate("/my-profile")} className="cursor-pointer hover:text-black">My Profile</p>
-								<p onClick={() => setToken(false)} className="cursor-pointer hover:text-black">Logout</p>
+								<p
+									onClick={() => navigate("/my-appointments")}
+									className="cursor-pointer hover:text-black"
+								>
+									My Appointments
+								</p>
+								<p
+									onClick={() => navigate("/my-profile")}
+									className="cursor-pointer hover:text-black"
+								>
+									My Profile
+								</p>
+								<p
+									onClick={logoutHandler}
+									className="cursor-pointer hover:text-black"
+								>
+									Logout
+								</p>
 							</div>
 						</div>
 					</div>
@@ -56,6 +85,28 @@ const Navbar = () => {
 						Create Account
 					</button>
 				)}
+				<img
+					className="w-6 md:hidden"
+					src={assets.menu_icon}
+					alt="menu_icon"
+					onClick={() => setShowMenu(true)}
+				/>
+				<div
+					className={`${
+						showMenu ? "w-full fixed" : "h-0 w-0"
+					} w-6 md:hidden right-0 top-0 bottom-0 z-20 overflow-hidden bg-white transition-all`}
+				>
+					<div>
+						<p className="font-bold">CureConnect</p>
+						<img src={assets.cross_icon} alt="" />
+					</div>
+					<ul>
+						<NavLink>HOME</NavLink>
+						<NavLink>ALL DOCTORS</NavLink>
+						<NavLink>ABOUT</NavLink>
+						<NavLink>CONTACT</NavLink>
+					</ul>
+				</div>
 			</div>
 		</div>
 	);

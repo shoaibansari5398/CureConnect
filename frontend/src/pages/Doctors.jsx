@@ -33,17 +33,17 @@ const Doctors = () => {
 				<div className="flex flex-col gap-4 text-sm text-gray-600">
 					<p
 						onClick={() =>
-							speciality === "General physician"
+							speciality === "General Physician"
 								? navigate("/doctors")
-								: navigate(`/doctors/General physician`)
+								: navigate(`/doctors/General Physician`)
 						}
 						className={`w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer ${
-							speciality === "General physician"
+							speciality === "General Physician"
 								? "bg-indigo-100 text-black"
 								: ""
 						}`}
 					>
-						General physician
+						General Physician
 					</p>
 					<p
 						onClick={() =>
@@ -73,13 +73,13 @@ const Doctors = () => {
 						onClick={() =>
 							speciality === "Pediatrician"
 								? navigate("/doctors")
-								: navigate(`/doctors/Pediatricians`)
+								: navigate(`/doctors/Pediatrician`)
 						}
 						className={`w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer ${
-							speciality === "Pediatricians" ? "bg-indigo-100 text-black" : ""
+							speciality === "Pediatrician" ? "bg-indigo-100 text-black" : ""
 						}`}
 					>
-						Pediatricians
+						Pediatrician
 					</p>
 					<p
 						onClick={() =>
@@ -117,9 +117,13 @@ const Doctors = () => {
 						>
 							<img src={doctor.image} alt="doctor1" className="bg-blue-50" />
 							<div className="p-4">
-								<div className="flex items-center gap-2 text-sm text-center text-green-500">
-									<p className="h-2 w-2 rounded-full bg-green-500"></p>
-									<p>Available</p>
+								<div className={`flex items-center gap-2 text-sm text-center ${
+									doctor.available ? 'text-green-500' : 'text-red-500'
+								}`}>
+									<p className={`h-2 w-2 rounded-full ${
+										doctor.available ? "bg-green-500" : "bg-red-500"
+									}`}></p>
+									<p>{doctor.available ? "Available" : "Not Available"}</p>
 								</div>
 								<p className="text-gray-900 font-medium text-lg">
 									{doctor.name}
