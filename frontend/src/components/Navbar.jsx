@@ -40,6 +40,11 @@ const Navbar = () => {
 					<li className="py-1">Contact</li>
 					<hr className="border-none outline-none h-0.5 bg-primary w-3/5 m-auto hidden" />
 				</NavLink>
+				<NavLink to="/admin">
+					<li className="border px-2.5 py-0.5 rounded-full border-gray-500 text-gray-600 text-xs font-bold">
+						Admin
+					</li>
+				</NavLink>
 			</ul>
 			<div className="flex items-center gap-4">
 				{token && userData ? (
@@ -86,7 +91,7 @@ const Navbar = () => {
 					</button>
 				)}
 				<img
-					className="w-6 md:hidden"
+					className="w-6 md:hidden cursor-pointer"
 					src={assets.menu_icon}
 					alt="menu_icon"
 					onClick={() => setShowMenu(true)}
@@ -96,15 +101,15 @@ const Navbar = () => {
 						showMenu ? "w-full fixed" : "h-0 w-0"
 					} w-6 md:hidden right-0 top-0 bottom-0 z-20 overflow-hidden bg-white transition-all`}
 				>
-					<div>
-						<p className="font-bold">CureConnect</p>
-						<img src={assets.cross_icon} alt="" />
+					<div className="flex items-center justify-between px-5 py-6">
+						<p className="w-36">CureConnect</p>
+						<img className="w-7 cursor-pointer" src={assets.cross_icon} alt="" />
 					</div>
-					<ul>
-						<NavLink>HOME</NavLink>
-						<NavLink>ALL DOCTORS</NavLink>
-						<NavLink>ABOUT</NavLink>
-						<NavLink>CONTACT</NavLink>
+					<ul className="flex flex-col gap-2 items-center mt-5 px-5 text-lg font-medium">
+						<NavLink onClick={() => setShowMenu(false)} to="/">HOME</NavLink>
+						<NavLink onClick={() => setShowMenu(false)} to="/doctors">ALL DOCTORS</NavLink>
+						<NavLink onClick={() => setShowMenu(false)} to="/about">ABOUT</NavLink>
+						<NavLink onClick={() => setShowMenu(false)} to="/contact">CONTACT</NavLink>
 					</ul>
 				</div>
 			</div>

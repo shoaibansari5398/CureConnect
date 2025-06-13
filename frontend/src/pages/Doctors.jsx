@@ -7,6 +7,7 @@ const Doctors = () => {
 	const { speciality } = useParams();
 	const navigate = useNavigate();
 	const [filterDoc, setFilterDoc] = useState([]);
+	const [showMenu, setShowMenu] = useState(false);
 
 	console.log(speciality);
 
@@ -30,7 +31,8 @@ const Doctors = () => {
 		<div>
 			<p className="text-gray-600">Browse through doctors speciality</p>
 			<div className="flex flex-col md:flex-row items-start gap-5 mt-5">
-				<div className="flex flex-col gap-4 text-sm text-gray-600">
+				<button className={`py-1 px-3 border rounded text-sm transition-all sm:hidden ${showMenu ? "bg-[#5F6FFF] text-white" : ""}`} onClick={() => setShowMenu(!showMenu)}>Filters</button>
+				<div className={`flex flex-col gap-4 text-sm text-gray-600 ${showMenu ? "flex" : "hidden sm:flex"}`}>
 					<p
 						onClick={() =>
 							speciality === "General Physician"
