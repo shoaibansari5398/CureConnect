@@ -13,7 +13,6 @@ const Navbar = () => {
 	const logoutHandler = () => {
 		setToken(false);
 		localStorage.removeItem("token");
-		// navigate("/");
 	};
 
 	return (
@@ -41,7 +40,9 @@ const Navbar = () => {
 					<li className="py-1">Contact</li>
 					<hr className="border-none outline-none h-0.5 bg-primary w-3/5 m-auto hidden" />
 				</NavLink>
-				<NavLink to={import.meta.env.VITE_ADMIN_URL}>
+				<NavLink
+					to={import.meta.env.VITE_ADMIN_URL || "/http://localhost:5174/"}
+				>
 					<li className="border px-2.5 py-0.5 rounded-full border-gray-500 text-gray-600 text-xs font-bold">
 						Admin
 					</li>

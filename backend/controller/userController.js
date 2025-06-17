@@ -110,12 +110,13 @@ const getProfile = async (req, res) => {
 const updateProfile = async (req, res) => {
 	try {
 		const { name, phone, address, gender, dob } = req.body;
-		const { userId } = req.body;
+		const { userId } = req;
 		const imageFile = req.file;
 
 		if (!name || !phone || !address || !gender || !dob) {
 			return res.json({ success: false, message: "Missing fields" });
 		}
+		console.log(userId)
 
 		await userModel.findByIdAndUpdate(userId, {
 			name,
