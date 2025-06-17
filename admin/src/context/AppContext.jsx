@@ -3,13 +3,12 @@ import { createContext } from "react";
 export const AppContext = createContext();
 
 const AppContextProvider = ({ children }) => {
-
-	const currency = "$"
+	const currency = "$";
 
 	const calculateAge = (dob) => {
 		const today = new Date();
 		const birthDate = new Date(dob);
-		console.log(today,birthDate)
+		today, birthDate;
 		let age = today.getFullYear() - birthDate.getFullYear();
 		return age;
 	};

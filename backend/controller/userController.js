@@ -116,7 +116,6 @@ const updateProfile = async (req, res) => {
 		if (!name || !phone || !address || !gender || !dob) {
 			return res.json({ success: false, message: "Missing fields" });
 		}
-		console.log(userId)
 
 		await userModel.findByIdAndUpdate(userId, {
 			name,

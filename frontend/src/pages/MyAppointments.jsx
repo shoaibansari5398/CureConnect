@@ -8,12 +8,25 @@ const MyAppointments = () => {
 	const [appointments, setAppointments] = useState([]);
 	const [paid, setPaid] = useState(false);
 
-	const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+	const months = [
+		"Jan",
+		"Feb",
+		"Mar",
+		"Apr",
+		"May",
+		"Jun",
+		"Jul",
+		"Aug",
+		"Sep",
+		"Oct",
+		"Nov",
+		"Dec",
+	];
 
 	const slotDateFormat = (slotDate) => {
 		const datearray = slotDate.split("_");
-		return datearray[0]+" "+months[datearray[1]-1]+" "+datearray[2];
-	}
+		return datearray[0] + " " + months[datearray[1] - 1] + " " + datearray[2];
+	};
 
 	const getUserAppointments = async () => {
 		try {
@@ -25,7 +38,7 @@ const MyAppointments = () => {
 			);
 			setAppointments(data.appointments);
 		} catch (error) {
-			console.log(error);
+			error;
 			toast.error(error.message);
 		}
 	};
@@ -42,17 +55,15 @@ const MyAppointments = () => {
 				}
 			);
 
-			if(data.success){
+			if (data.success) {
 				toast.success(data.message);
 				getUserAppointments();
 				getDoctorsData();
-			}
-			else{
+			} else {
 				toast.error(data.message);
 			}
-
 		} catch (error) {
-			console.log(error);
+			error;
 			toast.error(error.message);
 		}
 	};
@@ -69,24 +80,22 @@ const MyAppointments = () => {
 				}
 			);
 
-			if(data.success){
+			if (data.success) {
 				toast.success(data.message);
 				setPaid(true);
 				getUserAppointments();
 				getDoctorsData();
-			}
-			else{
+			} else {
 				toast.error(data.message);
 			}
-
 		} catch (error) {
-			console.log(error);
+			error;
 			toast.error(error.message);
 		}
 	};
 
 	useEffect(() => {
-		if(token){
+		if (token) {
 			getUserAppointments();
 		}
 	}, [token]);
@@ -134,7 +143,10 @@ const MyAppointments = () => {
 								)}
 
 								{!item.cancelled && !item.payment && !item.isCompleted && (
-									<button onClick={() => payOnline(item._id)} className="text-sm text-stone-500 text-center sm:min-w-48 py-2 border hover:bg-primary hover:text-white transition-all duration-300 rounded-md">
+									<button
+										onClick={() => payOnline(item._id)}
+										className="text-sm text-stone-500 text-center sm:min-w-48 py-2 border hover:bg-primary hover:text-white transition-all duration-300 rounded-md"
+									>
 										Pay Online
 									</button>
 								)}
@@ -152,13 +164,11 @@ const MyAppointments = () => {
 										Cancelled Appointment
 									</button>
 								)}
-								{
-									item.isCompleted && (
-										<button className="sm:min-w-48 py-2 border border-green-500 text-green-500 rounded">
-											Completed Appointment
-										</button>
-									)
-								}
+								{item.isCompleted && (
+									<button className="sm:min-w-48 py-2 border border-green-500 text-green-500 rounded">
+										Completed Appointment
+									</button>
+								)}
 							</div>
 						</div>
 					))}

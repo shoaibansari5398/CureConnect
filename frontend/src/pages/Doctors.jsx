@@ -9,7 +9,7 @@ const Doctors = () => {
 	const [filterDoc, setFilterDoc] = useState([]);
 	const [showMenu, setShowMenu] = useState(false);
 
-	console.log(speciality);
+	speciality;
 
 	const { doctors } = useContext(AppContext);
 
@@ -31,8 +31,19 @@ const Doctors = () => {
 		<div>
 			<p className="text-gray-600">Browse through doctors speciality</p>
 			<div className="flex flex-col md:flex-row items-start gap-5 mt-5">
-				<button className={`py-1 px-3 border rounded text-sm transition-all sm:hidden ${showMenu ? "bg-[#5F6FFF] text-white" : ""}`} onClick={() => setShowMenu(!showMenu)}>Filters</button>
-				<div className={`flex flex-col gap-4 text-sm text-gray-600 ${showMenu ? "flex" : "hidden sm:flex"}`}>
+				<button
+					className={`py-1 px-3 border rounded text-sm transition-all sm:hidden ${
+						showMenu ? "bg-[#5F6FFF] text-white" : ""
+					}`}
+					onClick={() => setShowMenu(!showMenu)}
+				>
+					Filters
+				</button>
+				<div
+					className={`flex flex-col gap-4 text-sm text-gray-600 ${
+						showMenu ? "flex" : "hidden sm:flex"
+					}`}
+				>
 					<p
 						onClick={() =>
 							speciality === "General Physician"
@@ -119,12 +130,16 @@ const Doctors = () => {
 						>
 							<img src={doctor.image} alt="doctor1" className="bg-blue-50" />
 							<div className="p-4">
-								<div className={`flex items-center gap-2 text-sm text-center ${
-									doctor.available ? 'text-green-500' : 'text-red-500'
-								}`}>
-									<p className={`h-2 w-2 rounded-full ${
-										doctor.available ? "bg-green-500" : "bg-red-500"
-									}`}></p>
+								<div
+									className={`flex items-center gap-2 text-sm text-center ${
+										doctor.available ? "text-green-500" : "text-red-500"
+									}`}
+								>
+									<p
+										className={`h-2 w-2 rounded-full ${
+											doctor.available ? "bg-green-500" : "bg-red-500"
+										}`}
+									></p>
 									<p>{doctor.available ? "Available" : "Not Available"}</p>
 								</div>
 								<p className="text-gray-900 font-medium text-lg">

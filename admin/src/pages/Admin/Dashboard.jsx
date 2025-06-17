@@ -1,21 +1,20 @@
 import { useContext } from "react";
 import { AdminContext } from "../../context/AdminContext";
-import {assets} from "../../assets/assets";
+import { assets } from "../../assets/assets";
 import { useEffect } from "react";
 import { AppContext } from "../../context/AppContext";
 
 const Dashboard = () => {
+	const { dashData, aToken, getDashData, cancelAppointment } =
+		useContext(AdminContext);
 
-	const { dashData, aToken, getDashData, cancelAppointment } = useContext(AdminContext)
-
-	const {slotDateFormat} = useContext(AppContext)
+	const { slotDateFormat } = useContext(AppContext);
 
 	useEffect(() => {
-		if(aToken){
-			getDashData()
-			console.log(dashData)
+		if (aToken) {
+			getDashData();
 		}
-	}, [aToken])
+	}, [aToken]);
 
 	return (
 		dashData && (

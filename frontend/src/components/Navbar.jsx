@@ -106,6 +106,7 @@ const Navbar = () => {
 					<div className="flex items-center justify-between px-5 py-6">
 						<p className="w-36">CureConnect</p>
 						<img
+							onClick={() => setShowMenu(false)}
 							className="w-7 cursor-pointer"
 							src={assets.cross_icon}
 							alt=""

@@ -38,13 +38,15 @@ const AddDoctor = () => {
 			formData.append("fees", fees);
 			formData.append("speciality", speciality);
 			formData.append("degree", degree);
-			formData.append("address", JSON.stringify({line1: address1, line2: address2}));
+			formData.append(
+				"address",
+				JSON.stringify({ line1: address1, line2: address2 })
+			);
 			formData.append("about", about);
 
 			// formData.forEach((value, key) => {
-			// 	console.log(key, value);
+			// 	(key, value);
 			// });
-
 
 			const { data } = await axios.post(
 				`${backendUrl}/api/admin/add-doctor`,
@@ -66,14 +68,13 @@ const AddDoctor = () => {
 				setAddress1("");
 				setAddress2("");
 				setAbout("");
-			}
-			else {
-				console.log(data);
+			} else {
+				data;
 				toast.error(data.message);
 			}
 		} catch (error) {
 			toast.error(error.response.data.message);
-			console.log(error);
+			error;
 		}
 	};
 

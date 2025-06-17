@@ -14,12 +14,11 @@ const Login = () => {
 	const { backendUrl, setAToken } = useContext(AdminContext);
 	const { setDToken } = useContext(DoctorContext);
 
-	const navigate =useNavigate()
+	const navigate = useNavigate();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-
 			if (state === "Admin") {
 				const { data } = await axios.post(`${backendUrl}/api/admin/login`, {
 					email,
@@ -33,7 +32,7 @@ const Login = () => {
 				} else {
 					toast.error(data.message);
 				}
-			 } else {
+			} else {
 				const { data } = await axios.post(`${backendUrl}/api/doctor/login`, {
 					email,
 					password,
@@ -41,19 +40,17 @@ const Login = () => {
 				if (data.success) {
 					localStorage.setItem("dToken", data.token);
 					setDToken(data.token);
-					console.log(data.token)
+					data.token;
 					toast.success(data.message);
 					navigate("/doctor-dashboard");
 				} else {
 					toast.error(data.message);
 				}
-			 }
+			}
 		} catch (error) {
 			toast.error(error.response.data.message);
 		}
 	};
-
-
 
 	return (
 		<form

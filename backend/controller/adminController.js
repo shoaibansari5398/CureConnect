@@ -23,8 +23,8 @@ const addDoctor = async (req, res) => {
 		} = req.body;
 		const imageFile = req.file;
 
-		// console.log("Received data:", req.body);
-		// console.log("Uploaded file:", req.file);
+		// ("Received data:", req.body);
+		// ("Uploaded file:", req.file);
 
 		// if(!name || !email || !password || !speciality || !image || !degree || !experience || !about || !available || !fees || !address){
 		// 	return res.json({success:false,message:"Missing fields"})
@@ -69,7 +69,7 @@ const addDoctor = async (req, res) => {
 
 		res.json({ success: true, message: "Doctor added successfully" });
 	} catch (error) {
-		console.log(error);
+		error;
 		res.status(500).json({ error: error.message });
 	}
 };
@@ -115,7 +115,7 @@ const getDoctors = async (req, res) => {
 const appointmentsAdmin = async (req, res) => {
 	try {
 		const appointments = await appointmentModel.find({}).select("-password");
-		console.log(appointments)
+		appointments;
 		res.json({
 			success: true,
 			message: "Appointments data fetched successfully",
@@ -124,7 +124,7 @@ const appointmentsAdmin = async (req, res) => {
 	} catch (error) {
 		res.status(500).json({ message: error.message });
 	}
-}
+};
 
 // API to cancel appointment from Admin Panel
 
@@ -152,7 +152,7 @@ const appointmentCancel = async (req, res) => {
 		});
 		res.json({ success: true, message: "Appointment cancelled successfully" });
 	} catch (error) {
-		console.log(error);
+		error;
 		res.status(500).json({ error: error.message });
 	}
 };
@@ -160,31 +160,34 @@ const appointmentCancel = async (req, res) => {
 // API to get dashboard data for admin panel
 
 const adminDashboardData = async (req, res) => {
-
 	try {
-
 		const doctors = await doctorModel.find({});
 		const appointments = await appointmentModel.find({});
 		const users = await userModel.find({});
 
 		const dashData = {
-			doctors:doctors.length,
-			appointments:appointments.length,
+			doctors: doctors.length,
+			appointments: appointments.length,
 			users: users.length,
-			latestAppointments:appointments.reverse().slice(0,5),
-		}
+			latestAppointments: appointments.reverse().slice(0, 5),
+		};
 
 		res.json({
 			success: true,
 			message: "Dashboard data fetched successfully",
 			dashData,
-		})
-
-
+		});
 	} catch (error) {
-		console.log(error);
+		error;
 		res.status(500).json({ error: error.message });
 	}
-}
+};
 
-export { addDoctor, adminLogin, getDoctors, appointmentsAdmin, appointmentCancel, adminDashboardData };
+export {
+	addDoctor,
+	adminLogin,
+	getDoctors,
+	appointmentsAdmin,
+	appointmentCancel,
+	adminDashboardData,
+};
